@@ -408,8 +408,8 @@ function findAllOccurences(arr, item) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return arr.join(',');
 }
 
 
@@ -439,8 +439,17 @@ function toStringList(/* arr */) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  function sortA(a, b) {
+    if (a > b) return 1;
+    if (a < b) return -1;
+    return 0;
+  }
+  return arr.sort((a, b) => {
+    const firstParam = sortA(a.country, b.country);
+    if (!firstParam) return sortA(a.city, b.city);
+    return firstParam;
+  });
 }
 
 /**
@@ -461,8 +470,12 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const arr = Array(n).fill(Array(n).fill(0));
+  return arr.map((xA, iA) => xA.map((xB, iB) => {
+    if (iA === iB) return 1;
+    return xB;
+  }));
 }
 
 /**
@@ -478,8 +491,9 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const arr = Array(end - start + 1).fill(start);
+  return arr.map((x, i) => x + i);
 }
 
 /**
